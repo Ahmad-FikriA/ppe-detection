@@ -122,12 +122,16 @@ YOLO11s gives +2.7 mAP50-95 at about 1.7x the inference time. Both are real-time
   <img src="assets/fail_2.jpg" width="49%">
 </p>
 
+Left: ground truth labels (green). Right: model predictions.
+
 - `fail_1.jpg`: TODO, describe what the model missed or got wrong
 - `fail_2.jpg`: TODO, describe what the model missed or got wrong
 
 ## Limitations
 
 - Uses a public dataset; images are not from Indonesian worksites, so performance on local sites is untested.
+- Many test images are collages of 4 photos stitched into one (likely an augmentation step by the dataset author), so test scores may not fully reflect performance on single, natural camera frames.
+- Some images are stock or studio photos rather than real worksites.
 - `Non-Helmet` and `bare-arms` have fewer than 75 test instances each, so their scores are less reliable than other classes.
 - Single run per model with a fixed seed; no repeated runs to measure variance.
 - The model detects equipment; it does not yet decide whether each individual worker is compliant.
