@@ -6,10 +6,7 @@ A focused experiment on detecting personal protective equipment (PPE) on constru
   <img src="assets/demo_1.jpg" width="49%">
   <img src="assets/demo_2.jpg" width="49%">
 </p>
-<p align="center">
-  <img src="assets/demo_3.jpg" width="49%">
-  <img src="assets/demo_4.jpg" width="49%">
-</p>
+<p align="center"><em>YOLO11s predictions on held-out test images (confidence ≥ 0.4)</em></p>
 
 ## Why this project
 
@@ -122,10 +119,8 @@ YOLO11s gives +2.7 mAP50-95 at about 1.7x the inference time. Both are real-time
   <img src="assets/fail_2.jpg" width="49%">
 </p>
 
-Left: ground truth labels (green). Right: model predictions.
-
-- `fail_1.jpg`: TODO, describe what the model missed or got wrong
-- `fail_2.jpg`: TODO, describe what the model missed or got wrong
+- **Left (`fail_1.jpg`): a false alarm and a miss in the same image.** The model labels a curved pipe as `bare-arms` (0.44 confidence), while the worker's actual exposed forearm next to it gets no `bare-arms` box. The pipe's shape and color resemble an arm, which suggests the model leans on shape more than skin texture for this class.
+- **Right (`fail_2.jpg`): `Gloves` detected on objects that are not being worn.** A small yellow object on the ground is labeled `Gloves` (0.90), and an unclear red object at 0.54. Even if the first is a dropped glove, a glove that is not on a hand does not make a worker compliant. This matches the confusion matrix, where `Gloves` is the most common false alarm, and it is why a rule layer that links equipment to a specific person is the natural next step.
 
 ## Limitations
 
@@ -160,7 +155,7 @@ Training and evaluation steps are in [`train.ipynb`](train.ipynb).
 │   ├── best_yolo11n.pt
 │   └── best_yolo11s.pt
 └── assets/
-    ├── demo_1.jpg ... demo_4.jpg
+    ├── demo_1.jpg, demo_2.jpg
     ├── fail_1.jpg, fail_2.jpg
     ├── labels.jpg
     ├── results_s.png
