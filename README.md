@@ -6,7 +6,17 @@ A focused experiment on detecting personal protective equipment (PPE) on constru
   <img src="assets/demo_1.jpg" width="49%">
   <img src="assets/demo_2.jpg" width="49%">
 </p>
-<p align="center"><em>YOLO11s predictions on held-out test images (confidence ≥ 0.4)</em></p>
+<p align="center">
+  <img src="assets/demo_3.jpg" width="49%">
+  <img src="assets/demo_4.jpg" width="49%">
+</p>
+
+YOLO11s predictions on held-out test images (confidence ≥ 0.4):
+
+- **Top left:** three workers in vests, each correctly flagged `Non-Helmet`, even the one holding a hard hat in his hand instead of wearing it. Bare arms and shoes are also picked up.
+- **Top right:** a mix of scenes in one image (the dataset stitches 4 photos together): a worker in a vest, a helmet, and a group with bare arms.
+- **Bottom left:** gloves and rubber boots detected at close range, plus vests and bare arms in a crowded group.
+- **Bottom right:** vests across different settings, gloves and shoes on a rooftop worker, and a large close-up glove. This image also shows a weakness of the dataset: some photos are not from worksites (for example, children wearing vests).
 
 ## Why this project
 
@@ -155,7 +165,7 @@ Training and evaluation steps are in [`train.ipynb`](train.ipynb).
 │   ├── best_yolo11n.pt
 │   └── best_yolo11s.pt
 └── assets/
-    ├── demo_1.jpg, demo_2.jpg
+    ├── demo_1.jpg ... demo_4.jpg
     ├── fail_1.jpg, fail_2.jpg
     ├── labels.jpg
     ├── results_s.png
